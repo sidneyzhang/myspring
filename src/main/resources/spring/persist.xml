@@ -54,6 +54,8 @@
 	</beans>
 
 	<beans profile="jdbc">
+
+		<context:component-scan base-package="com.sidney.myspring.repository.jdbc" />
 		<!-- Transaction manager for a single JDBC DataSource (alternative to JTA) -->
 		<bean id="transactionManager"
 			class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
@@ -68,10 +70,18 @@
 			<constructor-arg ref="dataSource" />
 		</bean>
 
-		<context:component-scan base-package="com.sidney.myspring.repository.jdbc" />
-		
+
+
+		<!-- <tx:annotation-driven transaction-manager="transactionManager" /> 
+			<tx:advice id="txAdvice" transaction-manager="transactionManager"> <tx:attributes> 
+			<tx:method name="*" propagation="REQUIRED" /> </tx:attributes> </tx:advice> -->
+
+	</beans>
+
+	<beans profile="jdbc,ibatis">
+
 		<tx:annotation-driven transaction-manager="transactionManager" />
-		
+
 		<tx:advice id="txAdvice" transaction-manager="transactionManager">
 			<tx:attributes>
 				<tx:method name="*" propagation="REQUIRED" />
@@ -79,27 +89,24 @@
 		</tx:advice>
 
 	</beans>
-	
-	    <beans profile="default">
-        <!--
-            Loads JPA beans
-            Will automatically be transactional due to @Transactional.
-            EntityManager will be auto-injected due to @PersistenceContext.
-            PersistenceExceptions will be auto-translated due to @Repository.
-        -->
-        <context:component-scan base-package="com.sidney.myspring.repository.jpa"/>
-    </beans>
+
+	<beans profile="default">
+		<!-- Loads JPA beans Will automatically be transactional due to @Transactional. 
+			EntityManager will be auto-injected due to @PersistenceContext. PersistenceExceptions 
+			will be auto-translated due to @Repository. -->
+		<context:component-scan base-package="com.sidney.myspring.repository.jpa" />
+	</beans>
 
 	<beans profile="ibatis">
-	
-		<context:component-scan base-package="com.sidney.myspring.repository.ibatis"/>
+
+		<context:component-scan base-package="com.sidney.myspring.repository.ibatis" />
 
 		<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
 			p:configLocation="classpath:**/SqlMapConfig.xml" p:dataSource-ref="dataSource" />
 
-        <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate"
-        p:sqlMapClient-ref="sqlMapClient" />
-        
+		<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate"
+			p:sqlMapClient-ref="sqlMapClient" />
+
 		<bean id="transactionManager"
 			class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 			p:dataSource-ref="dataSource" />
