@@ -97,6 +97,9 @@
 		<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean"
 			p:configLocation="classpath:**/SqlMapConfig.xml" p:dataSource-ref="dataSource" />
 
+        <bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate"
+        p:sqlMapClient-ref="sqlMapClient" />
+        
 		<bean id="transactionManager"
 			class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
 			p:dataSource-ref="dataSource" />
