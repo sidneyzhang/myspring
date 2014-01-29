@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="S_CUSTOMER" >
+    <resultMap id="BaseResultMap" class="com.sidney.myspring.repository.ibatis.SCustomer" >
+      <result column="ID" property="id" jdbcType="DECIMAL" />
+      <result column="NAME" property="name" jdbcType="VARCHAR" />
+      <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+      <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+      <result column="CITY" property="city" jdbcType="VARCHAR" />
+      <result column="STATE" property="state" jdbcType="VARCHAR" />
+      <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+      <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+      <result column="CREDIT_RATING" property="creditRating" jdbcType="VARCHAR" />
+      <result column="SALES_REP_ID" property="salesRepId" jdbcType="DECIMAL" />
+      <result column="REGION_ID" property="regionId" jdbcType="DECIMAL" />
+      <result column="COMMENTS" property="comments" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="S_CUSTOMER.selectByExample" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SCustomerCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_CUSTOMER.Base_Column_List" />
+      from S_CUSTOMER
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_CUSTOMER.selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SCustomer" >
+      select 
+      <include refid="S_CUSTOMER.Base_Column_List" />
+      <![CDATA[
+      from S_CUSTOMER
+      where ID = #id:DECIMAL#
+      ]]>
+    </select>
+    <delete id="S_CUSTOMER.deleteByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SCustomer" >
+      <![CDATA[
+      delete from S_CUSTOMER
+      where ID = #id:DECIMAL#
+      ]]>
+    </delete>
+    <delete id="S_CUSTOMER.deleteByExample" parameterClass="com.sidney.myspring.repository.ibatis.SCustomerCriteria" >
+      delete from S_CUSTOMER
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="S_CUSTOMER.insert" parameterClass="com.sidney.myspring.repository.ibatis.SCustomer" >
+      <![CDATA[
+      insert into S_CUSTOMER (ID, NAME, PHONE, ADDRESS, CITY, 
+        STATE, COUNTRY, ZIP_CODE, CREDIT_RATING, 
+        SALES_REP_ID, REGION_ID, COMMENTS)
+      values (#id:DECIMAL#, #name:VARCHAR#, #phone:VARCHAR#, #address:VARCHAR#, #city:VARCHAR#, 
+        #state:VARCHAR#, #country:VARCHAR#, #zipCode:VARCHAR#, #creditRating:VARCHAR#, 
+        #salesRepId:DECIMAL#, #regionId:DECIMAL#, #comments:VARCHAR#)
+      ]]>
+    </insert>
+    <insert id="S_CUSTOMER.insertSelective" parameterClass="com.sidney.myspring.repository.ibatis.SCustomer" >
+      insert into S_CUSTOMER
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          ID
+        </isNotNull>
+        <isNotNull prepend="," property="name" >
+          NAME
+        </isNotNull>
+        <isNotNull prepend="," property="phone" >
+          PHONE
+        </isNotNull>
+        <isNotNull prepend="," property="address" >
+          ADDRESS
+        </isNotNull>
+        <isNotNull prepend="," property="city" >
+          CITY
+        </isNotNull>
+        <isNotNull prepend="," property="state" >
+          STATE
+        </isNotNull>
+        <isNotNull prepend="," property="country" >
+          COUNTRY
+        </isNotNull>
+        <isNotNull prepend="," property="zipCode" >
+          ZIP_CODE
+        </isNotNull>
+        <isNotNull prepend="," property="creditRating" >
+          CREDIT_RATING
+        </isNotNull>
+        <isNotNull prepend="," property="salesRepId" >
+          SALES_REP_ID
+        </isNotNull>
+        <isNotNull prepend="," property="regionId" >
+          REGION_ID
+        </isNotNull>
+        <isNotNull prepend="," property="comments" >
+          COMMENTS
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          <![CDATA[ #id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="name" >
+          <![CDATA[ #name:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="phone" >
+          <![CDATA[ #phone:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="address" >
+          <![CDATA[ #address:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="city" >
+          <![CDATA[ #city:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="state" >
+          <![CDATA[ #state:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="country" >
+          <![CDATA[ #country:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="zipCode" >
+          <![CDATA[ #zipCode:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="creditRating" >
+          <![CDATA[ #creditRating:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="salesRepId" >
+          <![CDATA[ #salesRepId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="regionId" >
+          <![CDATA[ #regionId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="comments" >
+          <![CDATA[ #comments:VARCHAR# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="S_CUSTOMER.countByExample" parameterClass="com.sidney.myspring.repository.ibatis.SCustomerCriteria" resultClass="java.lang.Integer" >
+      select count(*) from S_CUSTOMER
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="S_CUSTOMER.updateByExampleSelective" >
+      update S_CUSTOMER
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.id" >
+          <![CDATA[ ID = #record.id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.name" >
+          <![CDATA[ NAME = #record.name:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.phone" >
+          <![CDATA[ PHONE = #record.phone:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.address" >
+          <![CDATA[ ADDRESS = #record.address:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.city" >
+          <![CDATA[ CITY = #record.city:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.state" >
+          <![CDATA[ STATE = #record.state:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.country" >
+          <![CDATA[ COUNTRY = #record.country:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.zipCode" >
+          <![CDATA[ ZIP_CODE = #record.zipCode:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.creditRating" >
+          <![CDATA[ CREDIT_RATING = #record.creditRating:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.salesRepId" >
+          <![CDATA[ SALES_REP_ID = #record.salesRepId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.regionId" >
+          <![CDATA[ REGION_ID = #record.regionId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.comments" >
+          <![CDATA[ COMMENTS = #record.comments:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_CUSTOMER.updateByExample" >
+      <![CDATA[
+      update S_CUSTOMER
+      set ID = #record.id:DECIMAL#,
+        NAME = #record.name:VARCHAR#,
+        PHONE = #record.phone:VARCHAR#,
+        ADDRESS = #record.address:VARCHAR#,
+        CITY = #record.city:VARCHAR#,
+        STATE = #record.state:VARCHAR#,
+        COUNTRY = #record.country:VARCHAR#,
+        ZIP_CODE = #record.zipCode:VARCHAR#,
+        CREDIT_RATING = #record.creditRating:VARCHAR#,
+        SALES_REP_ID = #record.salesRepId:DECIMAL#,
+        REGION_ID = #record.regionId:DECIMAL#,
+        COMMENTS = #record.comments:VARCHAR#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_CUSTOMER.updateByPrimaryKeySelective" parameterClass="com.sidney.myspring.repository.ibatis.SCustomer" >
+      update S_CUSTOMER
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="name" >
+          <![CDATA[ NAME = #name:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="phone" >
+          <![CDATA[ PHONE = #phone:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="address" >
+          <![CDATA[ ADDRESS = #address:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="city" >
+          <![CDATA[ CITY = #city:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="state" >
+          <![CDATA[ STATE = #state:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="country" >
+          <![CDATA[ COUNTRY = #country:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="zipCode" >
+          <![CDATA[ ZIP_CODE = #zipCode:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="creditRating" >
+          <![CDATA[ CREDIT_RATING = #creditRating:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="salesRepId" >
+          <![CDATA[ SALES_REP_ID = #salesRepId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="regionId" >
+          <![CDATA[ REGION_ID = #regionId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="comments" >
+          <![CDATA[ COMMENTS = #comments:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_CUSTOMER.updateByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SCustomer" >
+      <![CDATA[
+      update S_CUSTOMER
+      set NAME = #name:VARCHAR#,
+        PHONE = #phone:VARCHAR#,
+        ADDRESS = #address:VARCHAR#,
+        CITY = #city:VARCHAR#,
+        STATE = #state:VARCHAR#,
+        COUNTRY = #country:VARCHAR#,
+        ZIP_CODE = #zipCode:VARCHAR#,
+        CREDIT_RATING = #creditRating:VARCHAR#,
+        SALES_REP_ID = #salesRepId:DECIMAL#,
+        REGION_ID = #regionId:DECIMAL#,
+        COMMENTS = #comments:VARCHAR#
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+  </sqlMap>

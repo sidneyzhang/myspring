@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="S_LONGTEXT" >
+    <resultMap id="BaseResultMap" class="com.sidney.myspring.repository.ibatis.SLongtext" >
+      <result column="ID" property="id" jdbcType="DECIMAL" />
+      <result column="USE_FILENAME" property="useFilename" jdbcType="VARCHAR" />
+      <result column="FILENAME" property="filename" jdbcType="VARCHAR" />
+      <result column="TEXT" property="text" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="S_LONGTEXT.selectByExample" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SLongtextCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_LONGTEXT.Base_Column_List" />
+      from S_LONGTEXT
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_LONGTEXT.selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SLongtext" >
+      select 
+      <include refid="S_LONGTEXT.Base_Column_List" />
+      <![CDATA[
+      from S_LONGTEXT
+      where ID = #id:DECIMAL#
+      ]]>
+    </select>
+    <delete id="S_LONGTEXT.deleteByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SLongtext" >
+      <![CDATA[
+      delete from S_LONGTEXT
+      where ID = #id:DECIMAL#
+      ]]>
+    </delete>
+    <delete id="S_LONGTEXT.deleteByExample" parameterClass="com.sidney.myspring.repository.ibatis.SLongtextCriteria" >
+      delete from S_LONGTEXT
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="S_LONGTEXT.insert" parameterClass="com.sidney.myspring.repository.ibatis.SLongtext" >
+      <![CDATA[
+      insert into S_LONGTEXT (ID, USE_FILENAME, FILENAME, TEXT)
+      values (#id:DECIMAL#, #useFilename:VARCHAR#, #filename:VARCHAR#, #text:VARCHAR#)
+      ]]>
+    </insert>
+    <insert id="S_LONGTEXT.insertSelective" parameterClass="com.sidney.myspring.repository.ibatis.SLongtext" >
+      insert into S_LONGTEXT
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          ID
+        </isNotNull>
+        <isNotNull prepend="," property="useFilename" >
+          USE_FILENAME
+        </isNotNull>
+        <isNotNull prepend="," property="filename" >
+          FILENAME
+        </isNotNull>
+        <isNotNull prepend="," property="text" >
+          TEXT
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          <![CDATA[ #id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="useFilename" >
+          <![CDATA[ #useFilename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="filename" >
+          <![CDATA[ #filename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="text" >
+          <![CDATA[ #text:VARCHAR# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="S_LONGTEXT.countByExample" parameterClass="com.sidney.myspring.repository.ibatis.SLongtextCriteria" resultClass="java.lang.Integer" >
+      select count(*) from S_LONGTEXT
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="S_LONGTEXT.updateByExampleSelective" >
+      update S_LONGTEXT
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.id" >
+          <![CDATA[ ID = #record.id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.useFilename" >
+          <![CDATA[ USE_FILENAME = #record.useFilename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.filename" >
+          <![CDATA[ FILENAME = #record.filename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.text" >
+          <![CDATA[ TEXT = #record.text:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_LONGTEXT.updateByExample" >
+      <![CDATA[
+      update S_LONGTEXT
+      set ID = #record.id:DECIMAL#,
+        USE_FILENAME = #record.useFilename:VARCHAR#,
+        FILENAME = #record.filename:VARCHAR#,
+        TEXT = #record.text:VARCHAR#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_LONGTEXT.updateByPrimaryKeySelective" parameterClass="com.sidney.myspring.repository.ibatis.SLongtext" >
+      update S_LONGTEXT
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="useFilename" >
+          <![CDATA[ USE_FILENAME = #useFilename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="filename" >
+          <![CDATA[ FILENAME = #filename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="text" >
+          <![CDATA[ TEXT = #text:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_LONGTEXT.updateByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SLongtext" >
+      <![CDATA[
+      update S_LONGTEXT
+      set USE_FILENAME = #useFilename:VARCHAR#,
+        FILENAME = #filename:VARCHAR#,
+        TEXT = #text:VARCHAR#
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+  </sqlMap>

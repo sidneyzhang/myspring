@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="S_IMAGE" >
+    <resultMap id="BaseResultMap" class="com.sidney.myspring.repository.ibatis.SImage" >
+      <result column="ID" property="id" jdbcType="DECIMAL" />
+      <result column="FORMAT" property="format" jdbcType="VARCHAR" />
+      <result column="USE_FILENAME" property="useFilename" jdbcType="VARCHAR" />
+      <result column="FILENAME" property="filename" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="S_IMAGE.Base_Column_List" >
+      ID, FORMAT, USE_FILENAME, FILENAME
+    </sql>
+    <sql id="S_IMAGE.Blob_Column_List" >
+      IMAGE
+    </sql>
+    <select id="S_IMAGE.selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterClass="com.sidney.myspring.repository.ibatis.SImageCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_IMAGE.Base_Column_List" />
+      ,
+      <include refid="S_IMAGE.Blob_Column_List" />
+      from S_IMAGE
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_IMAGE.selectByExample" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SImageCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_IMAGE.Base_Column_List" />
+      from S_IMAGE
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_IMAGE.selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterClass="com.sidney.myspring.repository.ibatis.SImage" >
+      select 
+      <include refid="S_IMAGE.Base_Column_List" />
+      ,
+      <include refid="S_IMAGE.Blob_Column_List" />
+      <![CDATA[
+      from S_IMAGE
+      where ID = #id:DECIMAL#
+      ]]>
+    </select>
+    <delete id="S_IMAGE.deleteByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SImage" >
+      <![CDATA[
+      delete from S_IMAGE
+      where ID = #id:DECIMAL#
+      ]]>
+    </delete>
+    <delete id="S_IMAGE.deleteByExample" parameterClass="com.sidney.myspring.repository.ibatis.SImageCriteria" >
+      delete from S_IMAGE
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="S_IMAGE.insert" parameterClass="com.sidney.myspring.repository.ibatis.SImage" >
+      <![CDATA[
+      insert into S_IMAGE (ID, FORMAT, USE_FILENAME, FILENAME, 
+        IMAGE)
+      values (#id:DECIMAL#, #format:VARCHAR#, #useFilename:VARCHAR#, #filename:VARCHAR#, 
+        #image:LONGVARBINARY#)
+      ]]>
+    </insert>
+    <insert id="S_IMAGE.insertSelective" parameterClass="com.sidney.myspring.repository.ibatis.SImage" >
+      insert into S_IMAGE
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          ID
+        </isNotNull>
+        <isNotNull prepend="," property="format" >
+          FORMAT
+        </isNotNull>
+        <isNotNull prepend="," property="useFilename" >
+          USE_FILENAME
+        </isNotNull>
+        <isNotNull prepend="," property="filename" >
+          FILENAME
+        </isNotNull>
+        <isNotNull prepend="," property="image" >
+          IMAGE
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          <![CDATA[ #id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="format" >
+          <![CDATA[ #format:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="useFilename" >
+          <![CDATA[ #useFilename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="filename" >
+          <![CDATA[ #filename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="image" >
+          <![CDATA[ #image:LONGVARBINARY# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="S_IMAGE.countByExample" parameterClass="com.sidney.myspring.repository.ibatis.SImageCriteria" resultClass="java.lang.Integer" >
+      select count(*) from S_IMAGE
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="S_IMAGE.updateByExampleSelective" >
+      update S_IMAGE
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.id" >
+          <![CDATA[ ID = #record.id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.format" >
+          <![CDATA[ FORMAT = #record.format:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.useFilename" >
+          <![CDATA[ USE_FILENAME = #record.useFilename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.filename" >
+          <![CDATA[ FILENAME = #record.filename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.image" >
+          <![CDATA[ IMAGE = #record.image:LONGVARBINARY# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_IMAGE.updateByExampleWithBLOBs" >
+      <![CDATA[
+      update S_IMAGE
+      set ID = #record.id:DECIMAL#,
+        FORMAT = #record.format:VARCHAR#,
+        USE_FILENAME = #record.useFilename:VARCHAR#,
+        FILENAME = #record.filename:VARCHAR#,
+        IMAGE = #record.image:LONGVARBINARY#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_IMAGE.updateByExample" >
+      <![CDATA[
+      update S_IMAGE
+      set ID = #record.id:DECIMAL#,
+        FORMAT = #record.format:VARCHAR#,
+        USE_FILENAME = #record.useFilename:VARCHAR#,
+        FILENAME = #record.filename:VARCHAR#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_IMAGE.updateByPrimaryKeySelective" parameterClass="com.sidney.myspring.repository.ibatis.SImage" >
+      update S_IMAGE
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="format" >
+          <![CDATA[ FORMAT = #format:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="useFilename" >
+          <![CDATA[ USE_FILENAME = #useFilename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="filename" >
+          <![CDATA[ FILENAME = #filename:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="image" >
+          <![CDATA[ IMAGE = #image:LONGVARBINARY# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_IMAGE.updateByPrimaryKeyWithBLOBs" parameterClass="com.sidney.myspring.repository.ibatis.SImage" >
+      <![CDATA[
+      update S_IMAGE
+      set FORMAT = #format:VARCHAR#,
+        USE_FILENAME = #useFilename:VARCHAR#,
+        FILENAME = #filename:VARCHAR#,
+        IMAGE = #image:LONGVARBINARY#
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_IMAGE.updateByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SImage" >
+      <![CDATA[
+      update S_IMAGE
+      set FORMAT = #format:VARCHAR#,
+        USE_FILENAME = #useFilename:VARCHAR#,
+        FILENAME = #filename:VARCHAR#
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+  </sqlMap>
