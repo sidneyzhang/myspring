@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="S_ORD" >
+    <resultMap id="BaseResultMap" class="com.sidney.myspring.repository.ibatis.SOrd" >
+      <result column="ID" property="id" jdbcType="DECIMAL" />
+      <result column="CUSTOMER_ID" property="customerId" jdbcType="DECIMAL" />
+      <result column="DATE_ORDERED" property="dateOrdered" jdbcType="OTHER" />
+      <result column="DATE_SHIPPED" property="dateShipped" jdbcType="OTHER" />
+      <result column="SALES_REP_ID" property="salesRepId" jdbcType="DECIMAL" />
+      <result column="TOTAL" property="total" jdbcType="DECIMAL" />
+      <result column="PAYMENT_TYPE" property="paymentType" jdbcType="VARCHAR" />
+      <result column="ORDER_FILLED" property="orderFilled" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="S_ORD.selectByExample" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SOrdCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_ORD.Base_Column_List" />
+      from S_ORD
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_ORD.selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SOrd" >
+      select 
+      <include refid="S_ORD.Base_Column_List" />
+      <![CDATA[
+      from S_ORD
+      where ID = #id:DECIMAL#
+      ]]>
+    </select>
+    <delete id="S_ORD.deleteByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SOrd" >
+      <![CDATA[
+      delete from S_ORD
+      where ID = #id:DECIMAL#
+      ]]>
+    </delete>
+    <delete id="S_ORD.deleteByExample" parameterClass="com.sidney.myspring.repository.ibatis.SOrdCriteria" >
+      delete from S_ORD
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="S_ORD.insert" parameterClass="com.sidney.myspring.repository.ibatis.SOrd" >
+      <![CDATA[
+      insert into S_ORD (ID, CUSTOMER_ID, DATE_ORDERED, DATE_SHIPPED, 
+        SALES_REP_ID, TOTAL, PAYMENT_TYPE, ORDER_FILLED
+        )
+      values (#id:DECIMAL#, #customerId:DECIMAL#, #dateOrdered:OTHER#, #dateShipped:OTHER#, 
+        #salesRepId:DECIMAL#, #total:DECIMAL#, #paymentType:VARCHAR#, #orderFilled:VARCHAR#
+        )
+      ]]>
+    </insert>
+    <insert id="S_ORD.insertSelective" parameterClass="com.sidney.myspring.repository.ibatis.SOrd" >
+      insert into S_ORD
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          ID
+        </isNotNull>
+        <isNotNull prepend="," property="customerId" >
+          CUSTOMER_ID
+        </isNotNull>
+        <isNotNull prepend="," property="dateOrdered" >
+          DATE_ORDERED
+        </isNotNull>
+        <isNotNull prepend="," property="dateShipped" >
+          DATE_SHIPPED
+        </isNotNull>
+        <isNotNull prepend="," property="salesRepId" >
+          SALES_REP_ID
+        </isNotNull>
+        <isNotNull prepend="," property="total" >
+          TOTAL
+        </isNotNull>
+        <isNotNull prepend="," property="paymentType" >
+          PAYMENT_TYPE
+        </isNotNull>
+        <isNotNull prepend="," property="orderFilled" >
+          ORDER_FILLED
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          <![CDATA[ #id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="customerId" >
+          <![CDATA[ #customerId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="dateOrdered" >
+          <![CDATA[ #dateOrdered:OTHER# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="dateShipped" >
+          <![CDATA[ #dateShipped:OTHER# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="salesRepId" >
+          <![CDATA[ #salesRepId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="total" >
+          <![CDATA[ #total:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="paymentType" >
+          <![CDATA[ #paymentType:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="orderFilled" >
+          <![CDATA[ #orderFilled:VARCHAR# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="S_ORD.countByExample" parameterClass="com.sidney.myspring.repository.ibatis.SOrdCriteria" resultClass="java.lang.Integer" >
+      select count(*) from S_ORD
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="S_ORD.updateByExampleSelective" >
+      update S_ORD
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.id" >
+          <![CDATA[ ID = #record.id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.customerId" >
+          <![CDATA[ CUSTOMER_ID = #record.customerId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.dateOrdered" >
+          <![CDATA[ DATE_ORDERED = #record.dateOrdered:OTHER# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.dateShipped" >
+          <![CDATA[ DATE_SHIPPED = #record.dateShipped:OTHER# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.salesRepId" >
+          <![CDATA[ SALES_REP_ID = #record.salesRepId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.total" >
+          <![CDATA[ TOTAL = #record.total:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.paymentType" >
+          <![CDATA[ PAYMENT_TYPE = #record.paymentType:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.orderFilled" >
+          <![CDATA[ ORDER_FILLED = #record.orderFilled:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_ORD.updateByExample" >
+      <![CDATA[
+      update S_ORD
+      set ID = #record.id:DECIMAL#,
+        CUSTOMER_ID = #record.customerId:DECIMAL#,
+        DATE_ORDERED = #record.dateOrdered:OTHER#,
+        DATE_SHIPPED = #record.dateShipped:OTHER#,
+        SALES_REP_ID = #record.salesRepId:DECIMAL#,
+        TOTAL = #record.total:DECIMAL#,
+        PAYMENT_TYPE = #record.paymentType:VARCHAR#,
+        ORDER_FILLED = #record.orderFilled:VARCHAR#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_ORD.updateByPrimaryKeySelective" parameterClass="com.sidney.myspring.repository.ibatis.SOrd" >
+      update S_ORD
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="customerId" >
+          <![CDATA[ CUSTOMER_ID = #customerId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="dateOrdered" >
+          <![CDATA[ DATE_ORDERED = #dateOrdered:OTHER# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="dateShipped" >
+          <![CDATA[ DATE_SHIPPED = #dateShipped:OTHER# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="salesRepId" >
+          <![CDATA[ SALES_REP_ID = #salesRepId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="total" >
+          <![CDATA[ TOTAL = #total:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="paymentType" >
+          <![CDATA[ PAYMENT_TYPE = #paymentType:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="orderFilled" >
+          <![CDATA[ ORDER_FILLED = #orderFilled:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_ORD.updateByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SOrd" >
+      <![CDATA[
+      update S_ORD
+      set CUSTOMER_ID = #customerId:DECIMAL#,
+        DATE_ORDERED = #dateOrdered:OTHER#,
+        DATE_SHIPPED = #dateShipped:OTHER#,
+        SALES_REP_ID = #salesRepId:DECIMAL#,
+        TOTAL = #total:DECIMAL#,
+        PAYMENT_TYPE = #paymentType:VARCHAR#,
+        ORDER_FILLED = #orderFilled:VARCHAR#
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+  </sqlMap>

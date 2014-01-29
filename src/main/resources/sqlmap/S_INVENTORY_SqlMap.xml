@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="S_INVENTORY" >
+    <resultMap id="BaseResultMap" class="com.sidney.myspring.repository.ibatis.SInventory" >
+      <result column="PRODUCT_ID" property="productId" jdbcType="DECIMAL" />
+      <result column="WAREHOUSE_ID" property="warehouseId" jdbcType="DECIMAL" />
+      <result column="AMOUNT_IN_STOCK" property="amountInStock" jdbcType="DECIMAL" />
+      <result column="REORDER_POINT" property="reorderPoint" jdbcType="DECIMAL" />
+      <result column="MAX_IN_STOCK" property="maxInStock" jdbcType="DECIMAL" />
+      <result column="OUT_OF_STOCK_EXPLANATION" property="outOfStockExplanation" jdbcType="VARCHAR" />
+      <result column="RESTOCK_DATE" property="restockDate" jdbcType="OTHER" />
+    </resultMap>
+    <select id="S_INVENTORY.selectByExample" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SInventoryCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_INVENTORY.Base_Column_List" />
+      from S_INVENTORY
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_INVENTORY.selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SInventoryKey" >
+      select 
+      <include refid="S_INVENTORY.Base_Column_List" />
+      <![CDATA[
+      from S_INVENTORY
+      where PRODUCT_ID = #productId:DECIMAL#
+        and WAREHOUSE_ID = #warehouseId:DECIMAL#
+      ]]>
+    </select>
+    <delete id="S_INVENTORY.deleteByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SInventoryKey" >
+      <![CDATA[
+      delete from S_INVENTORY
+      where PRODUCT_ID = #productId:DECIMAL#
+        and WAREHOUSE_ID = #warehouseId:DECIMAL#
+      ]]>
+    </delete>
+    <delete id="S_INVENTORY.deleteByExample" parameterClass="com.sidney.myspring.repository.ibatis.SInventoryCriteria" >
+      delete from S_INVENTORY
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="S_INVENTORY.insert" parameterClass="com.sidney.myspring.repository.ibatis.SInventory" >
+      <![CDATA[
+      insert into S_INVENTORY (PRODUCT_ID, WAREHOUSE_ID, AMOUNT_IN_STOCK, REORDER_POINT, 
+        MAX_IN_STOCK, OUT_OF_STOCK_EXPLANATION, RESTOCK_DATE)
+      values (#productId:DECIMAL#, #warehouseId:DECIMAL#, #amountInStock:DECIMAL#, #reorderPoint:DECIMAL#, 
+        #maxInStock:DECIMAL#, #outOfStockExplanation:VARCHAR#, #restockDate:OTHER#)
+      ]]>
+    </insert>
+    <insert id="S_INVENTORY.insertSelective" parameterClass="com.sidney.myspring.repository.ibatis.SInventory" >
+      insert into S_INVENTORY
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="productId" >
+          PRODUCT_ID
+        </isNotNull>
+        <isNotNull prepend="," property="warehouseId" >
+          WAREHOUSE_ID
+        </isNotNull>
+        <isNotNull prepend="," property="amountInStock" >
+          AMOUNT_IN_STOCK
+        </isNotNull>
+        <isNotNull prepend="," property="reorderPoint" >
+          REORDER_POINT
+        </isNotNull>
+        <isNotNull prepend="," property="maxInStock" >
+          MAX_IN_STOCK
+        </isNotNull>
+        <isNotNull prepend="," property="outOfStockExplanation" >
+          OUT_OF_STOCK_EXPLANATION
+        </isNotNull>
+        <isNotNull prepend="," property="restockDate" >
+          RESTOCK_DATE
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="productId" >
+          <![CDATA[ #productId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="warehouseId" >
+          <![CDATA[ #warehouseId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="amountInStock" >
+          <![CDATA[ #amountInStock:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="reorderPoint" >
+          <![CDATA[ #reorderPoint:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="maxInStock" >
+          <![CDATA[ #maxInStock:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="outOfStockExplanation" >
+          <![CDATA[ #outOfStockExplanation:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="restockDate" >
+          <![CDATA[ #restockDate:OTHER# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="S_INVENTORY.countByExample" parameterClass="com.sidney.myspring.repository.ibatis.SInventoryCriteria" resultClass="java.lang.Integer" >
+      select count(*) from S_INVENTORY
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="S_INVENTORY.updateByExampleSelective" >
+      update S_INVENTORY
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.productId" >
+          <![CDATA[ PRODUCT_ID = #record.productId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.warehouseId" >
+          <![CDATA[ WAREHOUSE_ID = #record.warehouseId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.amountInStock" >
+          <![CDATA[ AMOUNT_IN_STOCK = #record.amountInStock:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.reorderPoint" >
+          <![CDATA[ REORDER_POINT = #record.reorderPoint:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.maxInStock" >
+          <![CDATA[ MAX_IN_STOCK = #record.maxInStock:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.outOfStockExplanation" >
+          <![CDATA[ OUT_OF_STOCK_EXPLANATION = #record.outOfStockExplanation:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.restockDate" >
+          <![CDATA[ RESTOCK_DATE = #record.restockDate:OTHER# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_INVENTORY.updateByExample" >
+      <![CDATA[
+      update S_INVENTORY
+      set PRODUCT_ID = #record.productId:DECIMAL#,
+        WAREHOUSE_ID = #record.warehouseId:DECIMAL#,
+        AMOUNT_IN_STOCK = #record.amountInStock:DECIMAL#,
+        REORDER_POINT = #record.reorderPoint:DECIMAL#,
+        MAX_IN_STOCK = #record.maxInStock:DECIMAL#,
+        OUT_OF_STOCK_EXPLANATION = #record.outOfStockExplanation:VARCHAR#,
+        RESTOCK_DATE = #record.restockDate:OTHER#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_INVENTORY.updateByPrimaryKeySelective" parameterClass="com.sidney.myspring.repository.ibatis.SInventory" >
+      update S_INVENTORY
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="amountInStock" >
+          <![CDATA[ AMOUNT_IN_STOCK = #amountInStock:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="reorderPoint" >
+          <![CDATA[ REORDER_POINT = #reorderPoint:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="maxInStock" >
+          <![CDATA[ MAX_IN_STOCK = #maxInStock:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="outOfStockExplanation" >
+          <![CDATA[ OUT_OF_STOCK_EXPLANATION = #outOfStockExplanation:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="restockDate" >
+          <![CDATA[ RESTOCK_DATE = #restockDate:OTHER# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where PRODUCT_ID = #productId:DECIMAL#
+        and WAREHOUSE_ID = #warehouseId:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_INVENTORY.updateByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SInventory" >
+      <![CDATA[
+      update S_INVENTORY
+      set AMOUNT_IN_STOCK = #amountInStock:DECIMAL#,
+        REORDER_POINT = #reorderPoint:DECIMAL#,
+        MAX_IN_STOCK = #maxInStock:DECIMAL#,
+        OUT_OF_STOCK_EXPLANATION = #outOfStockExplanation:VARCHAR#,
+        RESTOCK_DATE = #restockDate:OTHER#
+      where PRODUCT_ID = #productId:DECIMAL#
+        and WAREHOUSE_ID = #warehouseId:DECIMAL#
+      ]]>
+    </update>
+  </sqlMap>

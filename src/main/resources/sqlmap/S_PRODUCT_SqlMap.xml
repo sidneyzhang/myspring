@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="S_PRODUCT" >
+    <resultMap id="BaseResultMap" class="com.sidney.myspring.repository.ibatis.SProduct" >
+      <result column="ID" property="id" jdbcType="DECIMAL" />
+      <result column="NAME" property="name" jdbcType="VARCHAR" />
+      <result column="SHORT_DESC" property="shortDesc" jdbcType="VARCHAR" />
+      <result column="LONGTEXT_ID" property="longtextId" jdbcType="DECIMAL" />
+      <result column="IMAGE_ID" property="imageId" jdbcType="DECIMAL" />
+      <result column="SUGGESTED_WHLSL_PRICE" property="suggestedWhlslPrice" jdbcType="DECIMAL" />
+      <result column="WHLSL_UNITS" property="whlslUnits" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="S_PRODUCT.selectByExample" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SProductCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_PRODUCT.Base_Column_List" />
+      from S_PRODUCT
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_PRODUCT.selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SProduct" >
+      select 
+      <include refid="S_PRODUCT.Base_Column_List" />
+      <![CDATA[
+      from S_PRODUCT
+      where ID = #id:DECIMAL#
+      ]]>
+    </select>
+    <delete id="S_PRODUCT.deleteByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SProduct" >
+      <![CDATA[
+      delete from S_PRODUCT
+      where ID = #id:DECIMAL#
+      ]]>
+    </delete>
+    <delete id="S_PRODUCT.deleteByExample" parameterClass="com.sidney.myspring.repository.ibatis.SProductCriteria" >
+      delete from S_PRODUCT
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="S_PRODUCT.insert" parameterClass="com.sidney.myspring.repository.ibatis.SProduct" >
+      <![CDATA[
+      insert into S_PRODUCT (ID, NAME, SHORT_DESC, LONGTEXT_ID, 
+        IMAGE_ID, SUGGESTED_WHLSL_PRICE, WHLSL_UNITS)
+      values (#id:DECIMAL#, #name:VARCHAR#, #shortDesc:VARCHAR#, #longtextId:DECIMAL#, 
+        #imageId:DECIMAL#, #suggestedWhlslPrice:DECIMAL#, #whlslUnits:VARCHAR#)
+      ]]>
+    </insert>
+    <insert id="S_PRODUCT.insertSelective" parameterClass="com.sidney.myspring.repository.ibatis.SProduct" >
+      insert into S_PRODUCT
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          ID
+        </isNotNull>
+        <isNotNull prepend="," property="name" >
+          NAME
+        </isNotNull>
+        <isNotNull prepend="," property="shortDesc" >
+          SHORT_DESC
+        </isNotNull>
+        <isNotNull prepend="," property="longtextId" >
+          LONGTEXT_ID
+        </isNotNull>
+        <isNotNull prepend="," property="imageId" >
+          IMAGE_ID
+        </isNotNull>
+        <isNotNull prepend="," property="suggestedWhlslPrice" >
+          SUGGESTED_WHLSL_PRICE
+        </isNotNull>
+        <isNotNull prepend="," property="whlslUnits" >
+          WHLSL_UNITS
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          <![CDATA[ #id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="name" >
+          <![CDATA[ #name:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="shortDesc" >
+          <![CDATA[ #shortDesc:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="longtextId" >
+          <![CDATA[ #longtextId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="imageId" >
+          <![CDATA[ #imageId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="suggestedWhlslPrice" >
+          <![CDATA[ #suggestedWhlslPrice:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="whlslUnits" >
+          <![CDATA[ #whlslUnits:VARCHAR# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="S_PRODUCT.countByExample" parameterClass="com.sidney.myspring.repository.ibatis.SProductCriteria" resultClass="java.lang.Integer" >
+      select count(*) from S_PRODUCT
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="S_PRODUCT.updateByExampleSelective" >
+      update S_PRODUCT
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.id" >
+          <![CDATA[ ID = #record.id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.name" >
+          <![CDATA[ NAME = #record.name:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.shortDesc" >
+          <![CDATA[ SHORT_DESC = #record.shortDesc:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.longtextId" >
+          <![CDATA[ LONGTEXT_ID = #record.longtextId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.imageId" >
+          <![CDATA[ IMAGE_ID = #record.imageId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.suggestedWhlslPrice" >
+          <![CDATA[ SUGGESTED_WHLSL_PRICE = #record.suggestedWhlslPrice:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.whlslUnits" >
+          <![CDATA[ WHLSL_UNITS = #record.whlslUnits:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_PRODUCT.updateByExample" >
+      <![CDATA[
+      update S_PRODUCT
+      set ID = #record.id:DECIMAL#,
+        NAME = #record.name:VARCHAR#,
+        SHORT_DESC = #record.shortDesc:VARCHAR#,
+        LONGTEXT_ID = #record.longtextId:DECIMAL#,
+        IMAGE_ID = #record.imageId:DECIMAL#,
+        SUGGESTED_WHLSL_PRICE = #record.suggestedWhlslPrice:DECIMAL#,
+        WHLSL_UNITS = #record.whlslUnits:VARCHAR#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_PRODUCT.updateByPrimaryKeySelective" parameterClass="com.sidney.myspring.repository.ibatis.SProduct" >
+      update S_PRODUCT
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="name" >
+          <![CDATA[ NAME = #name:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="shortDesc" >
+          <![CDATA[ SHORT_DESC = #shortDesc:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="longtextId" >
+          <![CDATA[ LONGTEXT_ID = #longtextId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="imageId" >
+          <![CDATA[ IMAGE_ID = #imageId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="suggestedWhlslPrice" >
+          <![CDATA[ SUGGESTED_WHLSL_PRICE = #suggestedWhlslPrice:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="whlslUnits" >
+          <![CDATA[ WHLSL_UNITS = #whlslUnits:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_PRODUCT.updateByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SProduct" >
+      <![CDATA[
+      update S_PRODUCT
+      set NAME = #name:VARCHAR#,
+        SHORT_DESC = #shortDesc:VARCHAR#,
+        LONGTEXT_ID = #longtextId:DECIMAL#,
+        IMAGE_ID = #imageId:DECIMAL#,
+        SUGGESTED_WHLSL_PRICE = #suggestedWhlslPrice:DECIMAL#,
+        WHLSL_UNITS = #whlslUnits:VARCHAR#
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+  </sqlMap>

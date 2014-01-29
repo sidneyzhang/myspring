@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="S_REGION" >
+    <resultMap id="BaseResultMap" class="com.sidney.myspring.repository.ibatis.SRegion" >
+      <result column="ID" property="id" jdbcType="DECIMAL" />
+      <result column="NAME" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+    <select id="S_REGION.selectByExample" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SRegionCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_REGION.Base_Column_List" />
+      from S_REGION
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_REGION.selectByPrimaryKey" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SRegion" >
+      select 
+      <include refid="S_REGION.Base_Column_List" />
+      <![CDATA[
+      from S_REGION
+      where ID = #id:DECIMAL#
+      ]]>
+    </select>
+    <delete id="S_REGION.deleteByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SRegion" >
+      <![CDATA[
+      delete from S_REGION
+      where ID = #id:DECIMAL#
+      ]]>
+    </delete>
+    <delete id="S_REGION.deleteByExample" parameterClass="com.sidney.myspring.repository.ibatis.SRegionCriteria" >
+      delete from S_REGION
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="S_REGION.insert" parameterClass="com.sidney.myspring.repository.ibatis.SRegion" >
+      <![CDATA[
+      insert into S_REGION (ID, NAME)
+      values (#id:DECIMAL#, #name:VARCHAR#)
+      ]]>
+    </insert>
+    <insert id="S_REGION.insertSelective" parameterClass="com.sidney.myspring.repository.ibatis.SRegion" >
+      insert into S_REGION
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          ID
+        </isNotNull>
+        <isNotNull prepend="," property="name" >
+          NAME
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          <![CDATA[ #id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="name" >
+          <![CDATA[ #name:VARCHAR# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="S_REGION.countByExample" parameterClass="com.sidney.myspring.repository.ibatis.SRegionCriteria" resultClass="java.lang.Integer" >
+      select count(*) from S_REGION
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="S_REGION.updateByExampleSelective" >
+      update S_REGION
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.id" >
+          <![CDATA[ ID = #record.id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.name" >
+          <![CDATA[ NAME = #record.name:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_REGION.updateByExample" >
+      <![CDATA[
+      update S_REGION
+      set ID = #record.id:DECIMAL#,
+        NAME = #record.name:VARCHAR#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_REGION.updateByPrimaryKeySelective" parameterClass="com.sidney.myspring.repository.ibatis.SRegion" >
+      update S_REGION
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="name" >
+          <![CDATA[ NAME = #name:VARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_REGION.updateByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SRegion" >
+      <![CDATA[
+      update S_REGION
+      set NAME = #name:VARCHAR#
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+  </sqlMap>

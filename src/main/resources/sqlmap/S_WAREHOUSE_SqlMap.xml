@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+  <sqlMap namespace="S_WAREHOUSE" >
+    <resultMap id="BaseResultMap" class="com.sidney.myspring.repository.ibatis.SWarehouse" >
+      <result column="ID" property="id" jdbcType="DECIMAL" />
+      <result column="REGION_ID" property="regionId" jdbcType="DECIMAL" />
+      <result column="CITY" property="city" jdbcType="VARCHAR" />
+      <result column="STATE" property="state" jdbcType="VARCHAR" />
+      <result column="COUNTRY" property="country" jdbcType="VARCHAR" />
+      <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+      <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+      <result column="MANAGER_ID" property="managerId" jdbcType="DECIMAL" />
+    </resultMap>
+    <sql id="S_WAREHOUSE.Base_Column_List" >
+      ID, REGION_ID, CITY, STATE, COUNTRY, ZIP_CODE, PHONE, MANAGER_ID
+    </sql>
+    <sql id="S_WAREHOUSE.Blob_Column_List" >
+      ADDRESS
+    </sql>
+    <select id="S_WAREHOUSE.selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouseCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_WAREHOUSE.Base_Column_List" />
+      ,
+      <include refid="S_WAREHOUSE.Blob_Column_List" />
+      from S_WAREHOUSE
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_WAREHOUSE.selectByExample" resultMap="BaseResultMap" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouseCriteria" >
+      <include refid="common.Oracle_Pagination_Head" />
+      select
+      <isParameterPresent >
+        <isEqual property="distinct" compareValue="true" >
+          distinct
+        </isEqual>
+      </isParameterPresent>
+      <include refid="S_WAREHOUSE.Base_Column_List" />
+      from S_WAREHOUSE
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+        <isNotNull property="orderByClause" >
+          <![CDATA[ order by $orderByClause$ ]]>
+        </isNotNull>
+      </isParameterPresent>
+      <include refid="common.Oracle_Pagination_Tail" />
+    </select>
+    <select id="S_WAREHOUSE.selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouse" >
+      select 
+      <include refid="S_WAREHOUSE.Base_Column_List" />
+      ,
+      <include refid="S_WAREHOUSE.Blob_Column_List" />
+      <![CDATA[
+      from S_WAREHOUSE
+      where ID = #id:DECIMAL#
+      ]]>
+    </select>
+    <delete id="S_WAREHOUSE.deleteByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouse" >
+      <![CDATA[
+      delete from S_WAREHOUSE
+      where ID = #id:DECIMAL#
+      ]]>
+    </delete>
+    <delete id="S_WAREHOUSE.deleteByExample" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouseCriteria" >
+      delete from S_WAREHOUSE
+      <include refid="common.Example_Where_Clause" />
+    </delete>
+    <insert id="S_WAREHOUSE.insert" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouse" >
+      <![CDATA[
+      insert into S_WAREHOUSE (ID, REGION_ID, CITY, STATE, COUNTRY, 
+        ZIP_CODE, PHONE, MANAGER_ID, ADDRESS)
+      values (#id:DECIMAL#, #regionId:DECIMAL#, #city:VARCHAR#, #state:VARCHAR#, #country:VARCHAR#, 
+        #zipCode:VARCHAR#, #phone:VARCHAR#, #managerId:DECIMAL#, #address:LONGVARCHAR#)
+      ]]>
+    </insert>
+    <insert id="S_WAREHOUSE.insertSelective" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouse" >
+      insert into S_WAREHOUSE
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          ID
+        </isNotNull>
+        <isNotNull prepend="," property="regionId" >
+          REGION_ID
+        </isNotNull>
+        <isNotNull prepend="," property="city" >
+          CITY
+        </isNotNull>
+        <isNotNull prepend="," property="state" >
+          STATE
+        </isNotNull>
+        <isNotNull prepend="," property="country" >
+          COUNTRY
+        </isNotNull>
+        <isNotNull prepend="," property="zipCode" >
+          ZIP_CODE
+        </isNotNull>
+        <isNotNull prepend="," property="phone" >
+          PHONE
+        </isNotNull>
+        <isNotNull prepend="," property="managerId" >
+          MANAGER_ID
+        </isNotNull>
+        <isNotNull prepend="," property="address" >
+          ADDRESS
+        </isNotNull>
+        )
+      </dynamic>
+      values
+      <dynamic prepend="(" >
+        <isNotNull prepend="," property="id" >
+          <![CDATA[ #id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="regionId" >
+          <![CDATA[ #regionId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="city" >
+          <![CDATA[ #city:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="state" >
+          <![CDATA[ #state:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="country" >
+          <![CDATA[ #country:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="zipCode" >
+          <![CDATA[ #zipCode:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="phone" >
+          <![CDATA[ #phone:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="managerId" >
+          <![CDATA[ #managerId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="address" >
+          <![CDATA[ #address:LONGVARCHAR# ]]>
+        </isNotNull>
+        )
+      </dynamic>
+    </insert>
+    <select id="S_WAREHOUSE.countByExample" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouseCriteria" resultClass="java.lang.Integer" >
+      select count(*) from S_WAREHOUSE
+      <include refid="common.Example_Where_Clause" />
+    </select>
+    <update id="S_WAREHOUSE.updateByExampleSelective" >
+      update S_WAREHOUSE
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="record.id" >
+          <![CDATA[ ID = #record.id:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.regionId" >
+          <![CDATA[ REGION_ID = #record.regionId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.city" >
+          <![CDATA[ CITY = #record.city:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.state" >
+          <![CDATA[ STATE = #record.state:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.country" >
+          <![CDATA[ COUNTRY = #record.country:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.zipCode" >
+          <![CDATA[ ZIP_CODE = #record.zipCode:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.phone" >
+          <![CDATA[ PHONE = #record.phone:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.managerId" >
+          <![CDATA[ MANAGER_ID = #record.managerId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="record.address" >
+          <![CDATA[ ADDRESS = #record.address:LONGVARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_WAREHOUSE.updateByExampleWithBLOBs" >
+      <![CDATA[
+      update S_WAREHOUSE
+      set ID = #record.id:DECIMAL#,
+        REGION_ID = #record.regionId:DECIMAL#,
+        CITY = #record.city:VARCHAR#,
+        STATE = #record.state:VARCHAR#,
+        COUNTRY = #record.country:VARCHAR#,
+        ZIP_CODE = #record.zipCode:VARCHAR#,
+        PHONE = #record.phone:VARCHAR#,
+        MANAGER_ID = #record.managerId:DECIMAL#,
+        ADDRESS = #record.address:LONGVARCHAR#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_WAREHOUSE.updateByExample" >
+      <![CDATA[
+      update S_WAREHOUSE
+      set ID = #record.id:DECIMAL#,
+        REGION_ID = #record.regionId:DECIMAL#,
+        CITY = #record.city:VARCHAR#,
+        STATE = #record.state:VARCHAR#,
+        COUNTRY = #record.country:VARCHAR#,
+        ZIP_CODE = #record.zipCode:VARCHAR#,
+        PHONE = #record.phone:VARCHAR#,
+        MANAGER_ID = #record.managerId:DECIMAL#
+      ]]>
+      <isParameterPresent >
+        <include refid="common.Example_Where_Clause" />
+      </isParameterPresent>
+    </update>
+    <update id="S_WAREHOUSE.updateByPrimaryKeySelective" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouse" >
+      update S_WAREHOUSE
+      <dynamic prepend="set" >
+        <isNotNull prepend="," property="regionId" >
+          <![CDATA[ REGION_ID = #regionId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="city" >
+          <![CDATA[ CITY = #city:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="state" >
+          <![CDATA[ STATE = #state:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="country" >
+          <![CDATA[ COUNTRY = #country:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="zipCode" >
+          <![CDATA[ ZIP_CODE = #zipCode:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="phone" >
+          <![CDATA[ PHONE = #phone:VARCHAR# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="managerId" >
+          <![CDATA[ MANAGER_ID = #managerId:DECIMAL# ]]>
+        </isNotNull>
+        <isNotNull prepend="," property="address" >
+          <![CDATA[ ADDRESS = #address:LONGVARCHAR# ]]>
+        </isNotNull>
+      </dynamic>
+      <![CDATA[
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_WAREHOUSE.updateByPrimaryKeyWithBLOBs" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouse" >
+      <![CDATA[
+      update S_WAREHOUSE
+      set REGION_ID = #regionId:DECIMAL#,
+        CITY = #city:VARCHAR#,
+        STATE = #state:VARCHAR#,
+        COUNTRY = #country:VARCHAR#,
+        ZIP_CODE = #zipCode:VARCHAR#,
+        PHONE = #phone:VARCHAR#,
+        MANAGER_ID = #managerId:DECIMAL#,
+        ADDRESS = #address:LONGVARCHAR#
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+    <update id="S_WAREHOUSE.updateByPrimaryKey" parameterClass="com.sidney.myspring.repository.ibatis.SWarehouse" >
+      <![CDATA[
+      update S_WAREHOUSE
+      set REGION_ID = #regionId:DECIMAL#,
+        CITY = #city:VARCHAR#,
+        STATE = #state:VARCHAR#,
+        COUNTRY = #country:VARCHAR#,
+        ZIP_CODE = #zipCode:VARCHAR#,
+        PHONE = #phone:VARCHAR#,
+        MANAGER_ID = #managerId:DECIMAL#
+      where ID = #id:DECIMAL#
+      ]]>
+    </update>
+  </sqlMap>
