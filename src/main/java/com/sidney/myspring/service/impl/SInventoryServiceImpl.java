@@ -32,7 +32,7 @@ public class SInventoryServiceImpl implements SInventoryService {
 	}
 
 	public SInventory selectByPrimaryKey(SInventoryKey key) {
-		return this.sInventoryDAO.selectByPrimaryKey(key);
+		return this.sInventoryDAO.selectByPrimaryKey(productId, warehouseId);
 	}
 
 	public List<SInventory> selectByExample(SInventoryCriteria example) {
